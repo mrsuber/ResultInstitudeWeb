@@ -36,9 +36,8 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        background: 'rgba(45, 52, 54, 0.2)',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        background: '#1a1a1a',
+        borderTop: '1px solid #2d3748',
         pt: 8,
         pb: 3,
       }}
@@ -96,14 +95,14 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    background: '#2d3748',
+                    border: '1px solid #4a5568',
                     color: 'white',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      background: 'rgba(233, 30, 140, 0.3)',
+                      background: '#E91E8C',
+                      borderColor: '#E91E8C',
                       transform: 'translateY(-3px)',
-                      boxShadow: '0 8px 16px rgba(233, 30, 140, 0.2)',
                     },
                   }}
                 >

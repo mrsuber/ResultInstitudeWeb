@@ -3,10 +3,9 @@ import SendIcon from '@mui/icons-material/Send';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 const Contact = () => {
-  const contactRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,43 +28,23 @@ const Contact = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (contactRef.current) {
-      const elements = contactRef.current.querySelectorAll('.reveal');
-      elements.forEach((el) => observer.observe(el));
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const contactInfo = [
     {
-      icon: <EmailIcon sx={{ fontSize: 30 }} />,
+      icon: <EmailIcon sx={{ fontSize: 28 }} />,
       title: 'Email',
       value: 'info@resultinstitute.cm',
       href: 'mailto:info@resultinstitute.cm',
       color: '#4A7FC1',
     },
     {
-      icon: <PhoneIcon sx={{ fontSize: 30 }} />,
+      icon: <PhoneIcon sx={{ fontSize: 28 }} />,
       title: 'Phone',
       value: '+237 XXX XXX XXX',
       href: 'tel:+237000000000',
       color: '#E91E8C',
     },
     {
-      icon: <LocationOnIcon sx={{ fontSize: 30 }} />,
+      icon: <LocationOnIcon sx={{ fontSize: 28 }} />,
       title: 'Location',
       value: 'Douala, Cameroon',
       href: null,
@@ -76,23 +55,22 @@ const Contact = () => {
   return (
     <Box
       id="contact"
-      ref={contactRef}
       sx={{
         py: { xs: 8, md: 12 },
-        position: 'relative',
-        background: 'rgba(45, 52, 54, 0.05)',
+        background: '#F8F9FA',
       }}
     >
       <Container maxWidth="lg">
         {/* Section Header */}
-        <Box sx={{ textAlign: 'center', mb: 8 }} className="reveal">
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography
             variant="overline"
             sx={{
               color: '#E91E8C',
               fontWeight: 700,
-              fontSize: '1rem',
-              letterSpacing: 2,
+              fontSize: '0.875rem',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
             }}
           >
             Get In Touch
@@ -100,11 +78,12 @@ const Contact = () => {
           <Typography
             variant="h2"
             sx={{
-              fontSize: { xs: '2rem', md: '3rem' },
-              fontWeight: 800,
-              color: 'white',
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              fontWeight: 700,
+              color: '#1a1a1a',
               mt: 1,
               mb: 2,
+              lineHeight: 1.3,
             }}
           >
             Contact Us
@@ -112,10 +91,11 @@ const Contact = () => {
           <Typography
             variant="body1"
             sx={{
-              fontSize: { xs: '1rem', md: '1.2rem' },
-              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: { xs: '1rem', md: '1.125rem' },
+              color: '#4a5568',
               maxWidth: 700,
               mx: 'auto',
+              lineHeight: 1.7,
             }}
           >
             Have questions? We'd love to hear from you. Send us a message
@@ -130,23 +110,22 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <Box
                   key={index}
-                  className="reveal"
                   component={info.href ? 'a' : 'div'}
                   href={info.href || undefined}
                   sx={{
                     display: 'block',
                     textDecoration: 'none',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    borderRadius: 3,
+                    background: '#FFFFFF',
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '12px',
                     p: 3,
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                     transition: 'all 0.3s ease',
                     cursor: info.href ? 'pointer' : 'default',
                     '&:hover': info.href ? {
-                      background: 'rgba(255, 255, 255, 0.15)',
-                      transform: 'translateY(-5px)',
-                      boxShadow: `0 12px 24px ${info.color}40`,
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
+                      borderColor: info.color,
                     } : {},
                   }}
                 >
@@ -156,10 +135,10 @@ const Contact = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: 60,
-                        height: 60,
-                        borderRadius: '50%',
-                        background: `${info.color}20`,
+                        width: 56,
+                        height: 56,
+                        borderRadius: '12px',
+                        background: `${info.color}15`,
                         color: info.color,
                         flexShrink: 0,
                       }}
@@ -170,9 +149,10 @@ const Contact = () => {
                       <Typography
                         variant="subtitle2"
                         sx={{
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          fontSize: '0.85rem',
+                          color: '#718096',
+                          fontSize: '0.875rem',
                           mb: 0.5,
+                          fontWeight: 500,
                         }}
                       >
                         {info.title}
@@ -180,7 +160,7 @@ const Contact = () => {
                       <Typography
                         variant="body1"
                         sx={{
-                          color: 'white',
+                          color: '#1a1a1a',
                           fontWeight: 600,
                           fontSize: '1rem',
                         }}
@@ -197,15 +177,14 @@ const Contact = () => {
           {/* Contact Form */}
           <Grid item xs={12} md={8}>
             <Box
-              className="reveal"
               component="form"
               onSubmit={handleSubmit}
               sx={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 4,
+                background: '#FFFFFF',
+                border: '1px solid #E5E7EB',
+                borderRadius: '12px',
                 p: { xs: 3, md: 4 },
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
               }}
             >
               <Grid container spacing={3}>
@@ -219,22 +198,19 @@ const Contact = () => {
                     required
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        color: 'white',
-                        borderRadius: 2,
+                        borderRadius: '8px',
                         '& fieldset': {
-                          borderColor: 'rgba(255, 255, 255, 0.3)',
+                          borderColor: '#E5E7EB',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(233, 30, 140, 0.6)',
+                          borderColor: '#E91E8C',
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: '#E91E8C',
+                          borderWidth: 2,
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: 'rgba(255, 255, 255, 0.7)',
                         '&.Mui-focused': {
                           color: '#E91E8C',
                         },
@@ -254,22 +230,19 @@ const Contact = () => {
                     required
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        color: 'white',
-                        borderRadius: 2,
+                        borderRadius: '8px',
                         '& fieldset': {
-                          borderColor: 'rgba(255, 255, 255, 0.3)',
+                          borderColor: '#E5E7EB',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(233, 30, 140, 0.6)',
+                          borderColor: '#E91E8C',
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: '#E91E8C',
+                          borderWidth: 2,
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: 'rgba(255, 255, 255, 0.7)',
                         '&.Mui-focused': {
                           color: '#E91E8C',
                         },
@@ -288,22 +261,19 @@ const Contact = () => {
                     required
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        color: 'white',
-                        borderRadius: 2,
+                        borderRadius: '8px',
                         '& fieldset': {
-                          borderColor: 'rgba(255, 255, 255, 0.3)',
+                          borderColor: '#E5E7EB',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(233, 30, 140, 0.6)',
+                          borderColor: '#E91E8C',
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: '#E91E8C',
+                          borderWidth: 2,
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: 'rgba(255, 255, 255, 0.7)',
                         '&.Mui-focused': {
                           color: '#E91E8C',
                         },
@@ -324,22 +294,19 @@ const Contact = () => {
                     required
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        color: 'white',
-                        borderRadius: 2,
+                        borderRadius: '8px',
                         '& fieldset': {
-                          borderColor: 'rgba(255, 255, 255, 0.3)',
+                          borderColor: '#E5E7EB',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(233, 30, 140, 0.6)',
+                          borderColor: '#E91E8C',
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: '#E91E8C',
+                          borderWidth: 2,
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: 'rgba(255, 255, 255, 0.7)',
                         '&.Mui-focused': {
                           color: '#E91E8C',
                         },
@@ -356,18 +323,19 @@ const Contact = () => {
                     endIcon={<SendIcon />}
                     fullWidth
                     sx={{
-                      background: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
+                      background: '#E91E8C',
                       color: 'white',
                       py: 1.5,
-                      fontSize: '1.1rem',
+                      fontSize: '1rem',
                       fontWeight: 600,
-                      borderRadius: 2,
+                      borderRadius: '8px',
                       textTransform: 'none',
-                      boxShadow: '0 8px 24px rgba(233, 30, 140, 0.3)',
+                      boxShadow: '0 8px 16px rgba(233, 30, 140, 0.3)',
+                      transition: 'all 0.3s ease',
                       '&:hover': {
-                        background: 'linear-gradient(135deg, #FF6BB5 0%, #6FA3E0 100%)',
+                        background: '#C41570',
                         transform: 'translateY(-2px)',
-                        boxShadow: '0 12px 32px rgba(233, 30, 140, 0.4)',
+                        boxShadow: '0 12px 24px rgba(233, 30, 140, 0.4)',
                       },
                     }}
                   >

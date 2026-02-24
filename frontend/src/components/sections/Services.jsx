@@ -5,90 +5,66 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import { useEffect, useRef } from 'react';
 
 const Services = () => {
-  const servicesRef = useRef(null);
-
   const services = [
     {
-      icon: <SchoolIcon sx={{ fontSize: 50 }} />,
+      icon: <SchoolIcon sx={{ fontSize: 48 }} />,
       title: 'Training Management',
       description: 'Create and manage comprehensive leadership training programs, sessions, and enrollments with ease.',
-      gradient: 'linear-gradient(135deg, #E91E8C 0%, #FF6BB5 100%)',
+      color: '#E91E8C',
     },
     {
-      icon: <DashboardIcon sx={{ fontSize: 50 }} />,
+      icon: <DashboardIcon sx={{ fontSize: 48 }} />,
       title: 'Ground Follow-Up',
       description: 'Real-time monitoring and tracking of training activities, participant progress, and attendance.',
-      gradient: 'linear-gradient(135deg, #4A7FC1 0%, #6FA3E0 100%)',
+      color: '#4A7FC1',
     },
     {
-      icon: <GroupsIcon sx={{ fontSize: 50 }} />,
+      icon: <GroupsIcon sx={{ fontSize: 48 }} />,
       title: 'Youth Empowerment',
       description: 'Specialized programs designed to nurture competent professionals and emerging young leaders.',
-      gradient: 'linear-gradient(135deg, #00B894 0%, #00D2A0 100%)',
+      color: '#00B894',
     },
     {
-      icon: <TrendingUpIcon sx={{ fontSize: 50 }} />,
+      icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
       title: 'Executive Development',
       description: 'Personal and executive development programs focused on building visionary leadership skills.',
-      gradient: 'linear-gradient(135deg, #FDCB6E 0%, #FFA502 100%)',
+      color: '#FDCB6E',
     },
     {
-      icon: <VideoLibraryIcon sx={{ fontSize: 50 }} />,
+      icon: <VideoLibraryIcon sx={{ fontSize: 48 }} />,
       title: 'Content Delivery',
       description: 'Access training materials through our blog platform with embedded YouTube videos and resources.',
-      gradient: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
+      color: '#6C5CE7',
     },
     {
-      icon: <AssessmentIcon sx={{ fontSize: 50 }} />,
+      icon: <AssessmentIcon sx={{ fontSize: 48 }} />,
       title: 'Project Coordination',
       description: 'Kanban-style boards for managing collaborative projects, events, and mentorship programs.',
-      gradient: 'linear-gradient(135deg, #6C5CE7 0%, #A29BFE 100%)',
+      color: '#4A7FC1',
     },
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (servicesRef.current) {
-      const elements = servicesRef.current.querySelectorAll('.reveal');
-      elements.forEach((el) => observer.observe(el));
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <Box
       id="services"
-      ref={servicesRef}
       sx={{
         py: { xs: 8, md: 12 },
-        position: 'relative',
-        background: 'rgba(45, 52, 54, 0.05)',
+        background: '#F8F9FA',
       }}
     >
       <Container maxWidth="lg">
         {/* Section Header */}
-        <Box sx={{ textAlign: 'center', mb: 8 }} className="reveal">
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography
             variant="overline"
             sx={{
               color: '#E91E8C',
               fontWeight: 700,
-              fontSize: '1rem',
-              letterSpacing: 2,
+              fontSize: '0.875rem',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
             }}
           >
             What We Offer
@@ -96,11 +72,12 @@ const Services = () => {
           <Typography
             variant="h2"
             sx={{
-              fontSize: { xs: '2rem', md: '3rem' },
-              fontWeight: 800,
-              color: 'white',
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              fontWeight: 700,
+              color: '#1a1a1a',
               mt: 1,
               mb: 2,
+              lineHeight: 1.3,
             }}
           >
             Our Services
@@ -108,10 +85,11 @@ const Services = () => {
           <Typography
             variant="body1"
             sx={{
-              fontSize: { xs: '1rem', md: '1.2rem' },
-              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: { xs: '1rem', md: '1.125rem' },
+              color: '#4a5568',
               maxWidth: 700,
               mx: 'auto',
+              lineHeight: 1.7,
             }}
           >
             Comprehensive training management solutions designed to empower leaders
@@ -124,35 +102,18 @@ const Services = () => {
           {services.map((service, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
-                className="reveal"
                 sx={{
                   height: '100%',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: 4,
+                  background: '#FFFFFF',
+                  borderRadius: '12px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                   transition: 'all 0.3s ease',
                   cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  border: '1px solid #E5E7EB',
                   '&:hover': {
-                    background: 'rgba(255, 255, 255, 0.15)',
-                    transform: 'translateY(-10px)',
-                    boxShadow: '0 20px 40px rgba(31, 38, 135, 0.3)',
-                    '&::before': {
-                      opacity: 1,
-                    },
-                  },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 4,
-                    background: service.gradient,
-                    opacity: 0.7,
-                    transition: 'opacity 0.3s ease',
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.12)',
+                    borderColor: service.color,
                   },
                 }}
               >
@@ -163,19 +124,13 @@ const Services = () => {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: 100,
-                      height: 100,
-                      borderRadius: '50%',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      backdropFilter: 'blur(10px)',
-                      border: '2px solid rgba(255, 255, 255, 0.2)',
+                      width: 80,
+                      height: 80,
+                      borderRadius: '16px',
+                      background: `${service.color}15`,
+                      color: service.color,
                       mb: 3,
-                      color: 'white',
                       transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.1) rotate(5deg)',
-                        background: service.gradient,
-                      },
                     }}
                   >
                     {service.icon}
@@ -185,10 +140,10 @@ const Services = () => {
                   <Typography
                     variant="h5"
                     sx={{
-                      fontWeight: 700,
-                      color: 'white',
+                      fontWeight: 600,
+                      color: '#1a1a1a',
                       mb: 2,
-                      fontSize: { xs: '1.3rem', md: '1.5rem' },
+                      fontSize: { xs: '1.25rem', md: '1.4rem' },
                     }}
                   >
                     {service.title}
@@ -198,8 +153,8 @@ const Services = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: 'rgba(255, 255, 255, 0.8)',
-                      lineHeight: 1.8,
+                      color: '#718096',
+                      lineHeight: 1.7,
                       fontSize: { xs: '0.95rem', md: '1rem' },
                     }}
                   >

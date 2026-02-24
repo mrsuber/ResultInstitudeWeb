@@ -3,11 +3,8 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PeopleIcon from '@mui/icons-material/People';
 import PublicIcon from '@mui/icons-material/Public';
-import { useEffect, useRef } from 'react';
 
 const About = () => {
-  const aboutRef = useRef(null);
-
   const features = [
     {
       icon: <VerifiedIcon sx={{ fontSize: 40 }} />,
@@ -35,47 +32,27 @@ const About = () => {
     },
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (aboutRef.current) {
-      const elements = aboutRef.current.querySelectorAll('.reveal');
-      elements.forEach((el) => observer.observe(el));
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <Box
       id="about"
-      ref={aboutRef}
       sx={{
         py: { xs: 8, md: 12 },
-        position: 'relative',
+        background: '#FFFFFF',
       }}
     >
       <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center">
           {/* Left Side - Content */}
           <Grid item xs={12} md={6}>
-            <Box className="reveal">
+            <Box>
               <Typography
                 variant="overline"
                 sx={{
                   color: '#4A7FC1',
                   fontWeight: 700,
-                  fontSize: '1rem',
-                  letterSpacing: 2,
+                  fontSize: '0.875rem',
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
                 }}
               >
                 About Us
@@ -83,19 +60,18 @@ const About = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  fontSize: { xs: '2rem', md: '3rem' },
-                  fontWeight: 800,
-                  color: 'white',
+                  fontSize: { xs: '2rem', md: '2.5rem' },
+                  fontWeight: 700,
+                  color: '#1a1a1a',
                   mt: 1,
                   mb: 3,
                   lineHeight: 1.2,
                 }}
               >
-                Building Leaders for
+                Building Leaders for{' '}
                 <Box
                   component="span"
                   sx={{
-                    display: 'block',
                     background: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -109,9 +85,9 @@ const About = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  color: 'rgba(255, 255, 255, 0.9)',
+                  color: '#2d3748',
                   lineHeight: 1.8,
-                  fontSize: { xs: '1rem', md: '1.1rem' },
+                  fontSize: { xs: '1rem', md: '1.125rem' },
                   mb: 3,
                 }}
               >
@@ -123,7 +99,7 @@ const About = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: 'rgba(255, 255, 255, 0.8)',
+                  color: '#4a5568',
                   lineHeight: 1.8,
                   fontSize: { xs: '0.95rem', md: '1rem' },
                   mb: 4,
@@ -141,16 +117,19 @@ const About = () => {
                     key={index}
                     label={value}
                     sx={{
-                      background: 'rgba(255, 255, 255, 0.15)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      color: 'white',
+                      background: '#F8F9FA',
+                      border: '2px solid #E5E7EB',
+                      color: '#2d3748',
                       fontWeight: 600,
                       px: 2,
                       py: 2.5,
                       fontSize: '0.9rem',
+                      transition: 'all 0.3s ease',
                       '&:hover': {
-                        background: 'rgba(233, 30, 140, 0.3)',
+                        background: '#E91E8C',
+                        color: 'white',
+                        borderColor: '#E91E8C',
+                        transform: 'translateY(-2px)',
                       },
                     }}
                   />
@@ -165,20 +144,19 @@ const About = () => {
               {features.map((feature, index) => (
                 <Grid item xs={6} key={index}>
                   <Box
-                    className="reveal"
                     sx={{
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      borderRadius: 4,
+                      background: '#FFFFFF',
+                      border: '1px solid #E5E7EB',
+                      borderRadius: '12px',
                       p: 3,
                       textAlign: 'center',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
                       '&:hover': {
-                        background: 'rgba(255, 255, 255, 0.15)',
-                        transform: 'translateY(-10px)',
-                        boxShadow: '0 20px 40px rgba(31, 38, 135, 0.3)',
+                        transform: 'translateY(-8px)',
+                        boxShadow: '0 12px 24px rgba(0, 0, 0, 0.12)',
+                        borderColor: feature.color,
                       },
                     }}
                   >
@@ -186,11 +164,10 @@ const About = () => {
                       sx={{
                         width: 70,
                         height: 70,
-                        bgcolor: `${feature.color}20`,
+                        bgcolor: `${feature.color}15`,
                         color: feature.color,
                         mx: 'auto',
                         mb: 2,
-                        border: `2px solid ${feature.color}40`,
                       }}
                     >
                       {feature.icon}
@@ -198,8 +175,8 @@ const About = () => {
                     <Typography
                       variant="h6"
                       sx={{
-                        color: 'white',
-                        fontWeight: 700,
+                        color: '#1a1a1a',
+                        fontWeight: 600,
                         mb: 1,
                         fontSize: '1.1rem',
                       }}
@@ -209,7 +186,7 @@ const About = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: 'rgba(255, 255, 255, 0.8)',
+                        color: '#718096',
                         fontSize: '0.85rem',
                         lineHeight: 1.6,
                       }}
@@ -223,14 +200,12 @@ const About = () => {
 
             {/* Founder Info */}
             <Box
-              className="reveal"
               sx={{
                 mt: 4,
                 p: 3,
-                background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.1) 0%, rgba(74, 127, 193, 0.1) 100%)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 4,
+                background: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
+                borderRadius: '12px',
+                boxShadow: '0 8px 24px rgba(233, 30, 140, 0.2)',
               }}
             >
               <Stack direction="row" spacing={2} alignItems="center">
@@ -239,7 +214,10 @@ const About = () => {
                     width: 60,
                     height: 60,
                     border: '3px solid rgba(255, 255, 255, 0.3)',
-                    bgcolor: '#E91E8C',
+                    bgcolor: 'rgba(255, 255, 255, 0.2)',
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '1.5rem',
                   }}
                 >
                   AA
@@ -258,7 +236,7 @@ const About = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: 'rgba(255, 255, 255, 0.8)',
+                      color: 'rgba(255, 255, 255, 0.95)',
                       fontSize: '0.9rem',
                     }}
                   >
@@ -267,7 +245,7 @@ const About = () => {
                   <Typography
                     variant="caption"
                     sx={{
-                      color: 'rgba(255, 255, 255, 0.7)',
+                      color: 'rgba(255, 255, 255, 0.85)',
                       fontSize: '0.8rem',
                     }}
                   >

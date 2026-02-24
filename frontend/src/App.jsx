@@ -1,6 +1,6 @@
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import theme from './styles/theme';
-import './styles/glassmorphism.css';
+import './styles/professional.css';
 
 // Layout Components
 import Navbar from './components/layout/Navbar';
@@ -19,8 +19,7 @@ function App() {
       <Box
         sx={{
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          backgroundAttachment: 'fixed',
+          background: '#FFFFFF',
         }}
       >
         {/* Navigation */}
