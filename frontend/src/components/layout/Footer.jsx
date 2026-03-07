@@ -40,19 +40,20 @@ const Footer = () => {
         borderTop: '1px solid #2d3748',
         pt: 8,
         pb: 3,
+        width: '100%',
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={4}>
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
+        <Grid container spacing={4} sx={{ width: '100%', margin: 0 }}>
           {/* Company Info */}
           <Grid item xs={12} md={4}>
-            <Box sx={{ mb: 3 }}>
+            <Box>
               <Box
                 component="img"
                 src="/logo.png"
                 alt="Result Institute"
                 sx={{
-                  height: 80,
+                  height: 70,
                   width: 'auto',
                   mb: 2,
                   filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))',
@@ -63,7 +64,8 @@ const Footer = () => {
                 sx={{
                   color: 'white',
                   fontWeight: 700,
-                  mb: 1,
+                  mb: 1.5,
+                  fontSize: '1.1rem',
                 }}
               >
                 Result Institute
@@ -71,13 +73,14 @@ const Footer = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  lineHeight: 1.8,
-                  mb: 2,
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  lineHeight: 1.7,
+                  mb: 3,
+                  maxWidth: 260,
+                  fontSize: '0.9rem',
                 }}
               >
-                Empowering change makers and global emerging leaders through
-                comprehensive training programs and executive development.
+                Building leaders for tomorrow through comprehensive training and development programs.
               </Typography>
             </Box>
 

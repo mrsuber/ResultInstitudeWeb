@@ -38,10 +38,11 @@ const About = () => {
       sx={{
         py: { xs: 8, md: 12 },
         background: '#FFFFFF',
+        width: '100%',
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
+        <Grid container spacing={6} alignItems="center" sx={{ width: '100%', margin: 0 }}>
           {/* Left Side - Content */}
           <Grid item xs={12} md={6}>
             <Box>
@@ -140,7 +141,7 @@ const About = () => {
 
           {/* Right Side - Features Grid */}
           <Grid item xs={12} md={6}>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{ width: '100%', margin: 0 }}>
               {features.map((feature, index) => (
                 <Grid item xs={6} key={index}>
                   <Box
@@ -198,61 +199,115 @@ const About = () => {
               ))}
             </Grid>
 
-            {/* Founder Info */}
-            <Box
-              sx={{
-                mt: 4,
-                p: 3,
-                background: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
-                borderRadius: '12px',
-                boxShadow: '0 8px 24px rgba(233, 30, 140, 0.2)',
-              }}
-            >
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    border: '3px solid rgba(255, 255, 255, 0.3)',
-                    bgcolor: 'rgba(255, 255, 255, 0.2)',
-                    color: 'white',
-                    fontWeight: 700,
-                    fontSize: '1.5rem',
-                  }}
-                >
-                  AA
-                </Avatar>
-                <Box>
-                  <Typography
-                    variant="h6"
+            {/* Our Team Section */}
+            <Box sx={{ mt: 4 }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  color: '#1a1a1a',
+                  fontWeight: 700,
+                  mb: 3,
+                  fontSize: '1.5rem',
+                }}
+              >
+                Our Team
+              </Typography>
+
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr',
+                  gap: 2,
+                }}
+              >
+                {[
+                  {
+                    name: 'Abba Abdouraman',
+                    role: 'CEO & Founder',
+                    initials: 'AA',
+                    responsibilities: 'Strategic Leadership & Executive Development',
+                    gradient: 'linear-gradient(135deg, #E91E8C 0%, #4A7FC1 100%)',
+                  },
+                  {
+                    name: 'Sarah Mbong',
+                    role: 'Head of Training Programs',
+                    initials: 'SM',
+                    responsibilities: 'Training Curriculum & Program Coordination',
+                    gradient: 'linear-gradient(135deg, #4A7FC1 0%, #00B894 100%)',
+                  },
+                  {
+                    name: 'Emmanuel Njoya',
+                    role: 'Youth Empowerment Lead',
+                    initials: 'EN',
+                    responsibilities: 'Youth Programs & Community Engagement',
+                    gradient: 'linear-gradient(135deg, #00B894 0%, #FDCB6E 100%)',
+                  },
+                ].map((member, index) => (
+                  <Box
+                    key={index}
                     sx={{
-                      color: 'white',
-                      fontWeight: 700,
-                      fontSize: '1.1rem',
+                      p: 2.5,
+                      background: member.gradient,
+                      borderRadius: '12px',
+                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                      },
                     }}
                   >
-                    Abba Abdouraman
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.95)',
-                      fontSize: '0.9rem',
-                    }}
-                  >
-                    CEO & Founder, Result Institute
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.85)',
-                      fontSize: '0.8rem',
-                    }}
-                  >
-                    Former Divisional Officer • Leadership Coach
-                  </Typography>
-                </Box>
-              </Stack>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar
+                        sx={{
+                          width: 56,
+                          height: 56,
+                          border: '3px solid rgba(255, 255, 255, 0.3)',
+                          bgcolor: 'rgba(255, 255, 255, 0.2)',
+                          color: 'white',
+                          fontWeight: 700,
+                          fontSize: '1.3rem',
+                        }}
+                      >
+                        {member.initials}
+                      </Avatar>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            color: 'white',
+                            fontWeight: 700,
+                            fontSize: '1.05rem',
+                            mb: 0.5,
+                          }}
+                        >
+                          {member.name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: 'rgba(255, 255, 255, 0.95)',
+                            fontSize: '0.85rem',
+                            mb: 0.5,
+                          }}
+                        >
+                          {member.role}
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: 'rgba(255, 255, 255, 0.85)',
+                            fontSize: '0.75rem',
+                            display: 'block',
+                          }}
+                        >
+                          {member.responsibilities}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Grid>
         </Grid>
