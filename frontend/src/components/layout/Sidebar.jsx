@@ -61,31 +61,32 @@ const Sidebar = ({ open, onClose }) => {
         '& .MuiDrawer-paper': {
           width: DRAWER_WIDTH,
           boxSizing: 'border-box',
-          backgroundColor: '#1a1a2e',
-          color: 'white',
-          borderRight: '1px solid rgba(255, 255, 255, 0.1)'
+          backgroundColor: '#ffffff',
+          color: '#1f2937',
+          borderRight: '1px solid #e5e7eb',
+          boxShadow: '2px 0 8px rgba(0,0,0,0.05)'
         },
       }}
     >
       {/* Logo Section */}
-      <Box sx={{ p: 3, textAlign: 'center' }}>
+      <Box sx={{ p: 3, textAlign: 'center', bgcolor: '#6366f1' }}>
         <Typography variant="h5" fontWeight="bold" sx={{ color: '#fff' }}>
           Result Institute
         </Typography>
-        <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+        <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.95)', fontSize: '0.75rem' }}>
           Training Management
         </Typography>
       </Box>
 
-      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)' }} />
+      <Divider sx={{ borderColor: '#e5e7eb' }} />
 
       {/* User Info */}
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ p: 2.5, display: 'flex', alignItems: 'center', gap: 2, bgcolor: '#f9fafb' }}>
         <Avatar
           sx={{
             width: 48,
             height: 48,
-            bgcolor: 'primary.main',
+            bgcolor: '#6366f1',
             fontSize: '1.2rem',
             fontWeight: 'bold'
           }}
@@ -93,7 +94,7 @@ const Sidebar = ({ open, onClose }) => {
           {user?.first_name?.[0]}{user?.last_name?.[0]}
         </Avatar>
         <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Typography variant="subtitle2" noWrap fontWeight="600">
+          <Typography variant="subtitle2" noWrap fontWeight="600" sx={{ color: '#111827' }}>
             {user?.first_name} {user?.last_name}
           </Typography>
           <Chip
@@ -103,44 +104,46 @@ const Sidebar = ({ open, onClose }) => {
               height: 20,
               fontSize: '0.65rem',
               fontWeight: 600,
-              bgcolor: 'primary.main',
-              color: 'white',
+              bgcolor: '#dbeafe',
+              color: '#1e40af',
               mt: 0.5
             }}
           />
         </Box>
       </Box>
 
-      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)', my: 1 }} />
+      <Divider sx={{ borderColor: '#e5e7eb', my: 1 }} />
 
       {/* Navigation Menu */}
-      <List sx={{ px: 1, flex: 1 }}>
+      <List sx={{ px: 2, flex: 1, py: 2 }}>
         {filteredMenuItems.map((item) => {
           const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
           return (
-            <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
+            <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
               <ListItemButton
                 onClick={() => handleNavigation(item.path)}
                 sx={{
                   borderRadius: 2,
-                  backgroundColor: isActive ? 'rgba(102, 126, 234, 0.2)' : 'transparent',
+                  backgroundColor: isActive ? '#eef2ff' : 'transparent',
+                  border: isActive ? '1px solid #c7d2fe' : '1px solid transparent',
                   '&:hover': {
-                    backgroundColor: isActive
-                      ? 'rgba(102, 126, 234, 0.3)'
-                      : 'rgba(255, 255, 255, 0.05)',
+                    backgroundColor: isActive ? '#e0e7ff' : '#f3f4f6',
                   },
-                  color: isActive ? '#667eea' : '#ffffff',
-                  transition: 'all 0.2s'
+                  color: isActive ? '#4338ca' : '#6b7280',
+                  transition: 'all 0.2s',
+                  py: 1.25,
+                  px: 2
                 }}
               >
-                <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                <ListItemIcon sx={{ color: isActive ? '#6366f1' : '#9ca3af', minWidth: 40 }}>
                   {item.icon}
                 </ListItemIcon>
                 <ListItemText
                   primary={item.text}
                   primaryTypographyProps={{
-                    fontWeight: isActive ? 600 : 400,
-                    fontSize: '0.95rem'
+                    fontWeight: isActive ? 600 : 500,
+                    fontSize: '0.95rem',
+                    color: isActive ? '#111827' : '#374151'
                   }}
                 />
               </ListItemButton>
@@ -150,8 +153,8 @@ const Sidebar = ({ open, onClose }) => {
       </List>
 
       {/* Footer */}
-      <Box sx={{ p: 2, textAlign: 'center' }}>
-        <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)' }}>
+      <Box sx={{ p: 2, textAlign: 'center', bgcolor: '#f9fafb' }}>
+        <Typography variant="caption" sx={{ color: '#9ca3af', fontSize: '0.7rem' }}>
           © 2026 Result Institute
         </Typography>
       </Box>
