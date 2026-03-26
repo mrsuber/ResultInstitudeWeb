@@ -19,6 +19,7 @@ import SessionsList from './pages/dashboard/trainings/SessionsList';
 import SessionForm from './pages/dashboard/trainings/SessionForm';
 import EnrollmentsList from './pages/dashboard/trainings/EnrollmentsList';
 import Users from './pages/dashboard/Users';
+import Attendance from './pages/dashboard/Attendance';
 import Blog from './pages/dashboard/Blog';
 import Projects from './pages/dashboard/Projects';
 import Analytics from './pages/dashboard/Analytics';
@@ -132,6 +133,16 @@ function App() {
                 <ProtectedRoute requiredRoles={['super_admin', 'admin']}>
                   <DashboardLayout>
                     <Users />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/attendance"
+              element={
+                <ProtectedRoute requiredRoles={['super_admin', 'admin', 'trainer']}>
+                  <DashboardLayout>
+                    <Attendance />
                   </DashboardLayout>
                 </ProtectedRoute>
               }
