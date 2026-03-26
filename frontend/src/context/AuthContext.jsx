@@ -60,20 +60,11 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
-  const updateUser = async (userData) => {
-    try {
-      const response = await authService.updateProfile(userData);
-      if (response.success) {
-        setUser(response.data.user);
-        return { success: true };
-      }
-      return { success: false, error: response.error || 'Update failed' };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.response?.data?.error || 'Update failed. Please try again.'
-      };
-    }
+  const updateUser = (userData) => {
+    // Update user data in context and local storage
+    const updatedUser = { ...user, ...userData };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
   };
 
   const value = {
