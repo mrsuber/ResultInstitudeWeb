@@ -67,5 +67,6 @@ const authorize = (allowedRoles) => {
 
 module.exports = {
   authenticate,
+  authenticateToken: authenticate, // Alias for compatibility
   authorize
 };

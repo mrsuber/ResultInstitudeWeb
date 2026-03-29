@@ -36,7 +36,7 @@ exports.getAllPosts = async (req, res) => {
     // Status filter - if user is not admin, only show published posts
     if (status) {
       where.status = status;
-    } else if (req.user.role !== 'super_admin' && req.user.role !== 'admin') {
+    } else if (!req.user || (req.user.role !== 'super_admin' && req.user.role !== 'admin')) {
       where.status = 'published';
     }
 
